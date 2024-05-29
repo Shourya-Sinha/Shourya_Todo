@@ -37,12 +37,12 @@ app.use(
   })
 );
 
-//app.use(cors());
-app.use(cors({
-  origin: 'https://shourya-todo.onrender.com',  // Replace with your actual frontend URL
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  credentials: true
-}));
+app.use(cors());
+// app.use(cors({
+//   origin: 'https://shourya-todo.onrender.com',  // Replace with your actual frontend URL
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//   credentials: true
+// }));
 
 
 app.use(express.json());
@@ -54,21 +54,25 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api/v1',userRouter);
 app.use('/api/v1',taskRouter);
 
+app.use(express.static(path.join(__dirname, "/Frontend/dist")));
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname, "Frontend", "dist", "index.html"));
+});
 // app.use(express.static(path.join(__dirname, '../../Frontend/dist')));  // Adjusted path
 // //const config = require('../')
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname, '../Frontend/dist', 'index.html'));  // Adjusted path
 // });
 
-const staticPath = path.join(__dirname, '../Frontend/dist');
-app.use(express.static(staticPath));
+// const staticPath = path.join(__dirname, '../Frontend/dist');
+// app.use(express.static(staticPath));
 
-app.get('*', (req, res, next) => {
-  if (req.accepts('html') && req.originalUrl.startsWith('/api')) {
-    return next(); // Skip to the next middleware
-  }
-  res.sendFile(path.join(staticPath, 'index.html'));
-});
+// app.get('*', (req, res, next) => {
+//   if (req.accepts('html') && req.originalUrl.startsWith('/api')) {
+//     return next(); // Skip to the next middleware
+//   }
+//   res.sendFile(path.join(staticPath, 'index.html'));
+// });
 app.listen(PORT, () => {
   databaseConnect();
   console.log(`Server is running on 🚀 http://localhost:${PORT}🚀 `);
