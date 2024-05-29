@@ -38,7 +38,7 @@ const slice = createSlice({
 
 export default slice.reducer;
 export const {logOut} = slice.reducer;
-
+const REACT_APP_API_URL='https://shourya-todo.onrender.com/api/v1';
 export const logoutUser = () => (dispatch) => {
     dispatch(
       slice.actions.logOut({
@@ -58,7 +58,7 @@ export const logoutUser = () => (dispatch) => {
   
       await axios
         .post(
-          "http://localhost:3000/api/v1/login",
+           `${REACT_APP_API_URL}/login`,
           { ...formValues },
           {
             headers: {
@@ -96,7 +96,7 @@ export const logoutUser = () => (dispatch) => {
           });;
     };
   }
-  const REACT_APP_API_URL='https://shourya-todo.onrender.com/api/v1';
+  
   export function RegisterUser(formValues) {
     return async (dispatch, getState) => {
       dispatch(slice.actions.updateIsLoading({ isLoading: true, error: false }));
@@ -141,7 +141,7 @@ export const logoutUser = () => (dispatch) => {
   
       await axios
         .post(
-          "/forgot-password",
+          `${REACT_APP_API_URL}/forgot-password`,
           { ...formValues },
           {
             headers: {
