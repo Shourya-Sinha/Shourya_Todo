@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
+const REACT_APP_API_URL='https://shourya-todo.onrender.com/api/v1';
 const Profile = () => {
     const [userData, setUserData] = useState('');
     const token = useSelector((state) => state.auth.token);
@@ -12,7 +13,7 @@ const Profile = () => {
 
     const fetchUserData= async()=>{
         try {
-            const response = await axios.get('http://localhost:3000/api/v1/getuser-data',{
+            const response = await axios.get(`${REACT_APP_API_URL}/getuser-data` ,{
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
@@ -39,7 +40,7 @@ const Profile = () => {
         formData.append('images', images);
         //console.log('file', formData);
         try {
-          await axios.post('http://localhost:3000/api/v1/update-me', formData, {
+          await axios.post(`${REACT_APP_API_URL}/update-me`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
               Authorization: `Bearer ${token}`,
