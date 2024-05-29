@@ -54,7 +54,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api/v1',userRouter);
 app.use('/api/v1',taskRouter);
 
-app.use(express.static(path.join(__dirname, "./Frontend/dist")));
+app.use(express.static(path.join(__dirname, "../Frontend/dist")));
 app.get("*", (req, res) => {
 	res.sendFile(path.join(__dirname, "Frontend", "dist", "index.html"));
 });
