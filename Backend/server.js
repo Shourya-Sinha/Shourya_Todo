@@ -37,7 +37,13 @@ app.use(
   })
 );
 
-app.use(cors());
+//app.use(cors());
+app.use(cors({
+  origin: 'https://shourya-todo.onrender.com',  // Replace with your actual frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true
+}));
+
 
 app.use(express.json());
 
