@@ -4,6 +4,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
+const REACT_APP_API_URL='https://shourya-todo.onrender.com/api/v1';
+
 const Complete = () => {
   const [getTask, setGetTask] = useState([]);
   const token = useSelector((state) => state.auth.token);
@@ -11,7 +13,7 @@ const Complete = () => {
   const fetchComletedTask = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/v1/getallTask",
+        `${REACT_APP_API_URL}/getallTask`,
         {
           headers: {
             "Content-Type": "application/json",
