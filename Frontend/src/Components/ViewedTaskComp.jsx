@@ -20,6 +20,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import moment from "moment";
 
+const REACT_APP_API_URL='https://shourya-todo.onrender.com/api/v1';
 const ViewedTaskComp = () => {
   const [getTask, setGetTask] = useState([]);
   const [editTaskId, setEditTaskId] = useState(null);
@@ -30,7 +31,7 @@ const ViewedTaskComp = () => {
   const getallTask = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/v1/getallTask",
+        `${REACT_APP_API_URL}/getallTask`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -58,7 +59,7 @@ const ViewedTaskComp = () => {
   const handleEditTask = async () => {
     try {
       await axios.put(
-        "http://localhost:3000/api/v1/updateTask",
+        `${REACT_APP_API_URL}/updateTask`,
         { taskId: editTaskId, task: editTaskText },
         {
           headers: {
@@ -78,7 +79,7 @@ const ViewedTaskComp = () => {
     try {
       //console.log('id',taskId);
       await axios.post(
-        "http://localhost:3000/api/v1/completed",
+        `${REACT_APP_API_URL}/completed`",
         { taskId },
         {
           headers: {
@@ -96,7 +97,7 @@ const ViewedTaskComp = () => {
 
   const handleDeleteClick = async (taskId) => {
     try {
-      await axios.delete(`http://localhost:3000/api/v1/deleteTask`, {
+      await axios.delete(`${REACT_APP_API_URL}/deleteTask`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
