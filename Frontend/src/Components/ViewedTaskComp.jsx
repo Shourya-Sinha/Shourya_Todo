@@ -79,7 +79,7 @@ const ViewedTaskComp = () => {
     try {
       //console.log('id',taskId);
       await axios.post(
-        `${REACT_APP_API_URL}/completed`",
+        `${REACT_APP_API_URL}/completed`,
         { taskId },
         {
           headers: {
