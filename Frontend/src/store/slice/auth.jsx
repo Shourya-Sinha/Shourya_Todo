@@ -96,14 +96,14 @@ export const logoutUser = () => (dispatch) => {
           });;
     };
   }
-  
+  const REACT_APP_API_URL='https://shourya-todo.onrender.com/api/v1';
   export function RegisterUser(formValues) {
     return async (dispatch, getState) => {
       dispatch(slice.actions.updateIsLoading({ isLoading: true, error: false }));
   
       await axios
         .post(
-          "http://localhost:3000/api/v1/register",
+           `${REACT_APP_API_URL}/register`,
           { ...formValues },
           {
             headers: {
