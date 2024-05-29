@@ -12,6 +12,7 @@ import React, { useState } from "react";
 import { AddCircleOutline } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+const REACT_APP_API_URL='https://shourya-todo.onrender.com/api/v1';
 const TaskComp = () => {
   const [task, setTasks] = useState('');
   //const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const TaskComp = () => {
   const handleSubmit= async (e)=>{
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/v1/createTask',{task},{
+      const response = await axios.post(`${REACT_APP_API_URL}/createTask`,{task},{
         headers:{
           'Content-Type':'application/json',
           'Authorization':`Bearer ${token}`
